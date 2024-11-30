@@ -1,6 +1,7 @@
 # Calendar Keeper
 
 Tired of having your calendar full of meetings?
+
 Use Calendar Keeper to set a threshold of meeting hours and block your calendar when it is reached.
 
 ## Features
@@ -8,6 +9,7 @@ Use Calendar Keeper to set a threshold of meeting hours and block your calendar 
 - Block your free slots when a meetings hours threshold is reached.
 - Configure your own workperiod and meeting hours threshold.
 - Exclude specific events, like Lunch or OOO.
+- Total privacy. Nobody will read your data. Your data is yours.
 
 ## Installation
 1. Go to Google Apps Script: <https://script.google.com/>
