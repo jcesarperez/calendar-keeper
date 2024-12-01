@@ -37,7 +37,7 @@ function blockFreeSlotsWhenOverloaded() {
       if (eventTitle === BLOCK_EVENT_TITLE) {
         existingBlockEvents.push(event);
       } else if (!isTitleExcluded(eventTitle, EXCLUDED_TITLES)) {
-        totalMeetingHours += msToHours(event.getEndTime()) - msToHours(event.getStartTime());
+        totalMeetingHours += msToHours(event.getEndTime() - event.getStartTime());
       }
     });
 
