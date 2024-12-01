@@ -8,17 +8,14 @@ function isTitleExcluded(title, excludedTitles) {
 }
 
 function createDate(baseDate, dayOffset, hour) {
-  const date = new Date(baseDate);
-  date.setDate(baseDate.getDate() + dayOffset);
-  date.setHours(hour, 0, 0, 0);
-  return date;
+  return new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() + dayOffset, hour);
 }
 
 // config.js
 // CONFIGURATION HERE
 const WORK_START = 8;
 const WORK_END = 18;
-const MEETING_THRESHOLD = 5;
+const MEETING_THRESHOLD = 2;
 const BLOCK_EVENT_TITLE = "focus time";
 const EXCLUDED_TITLES = ["OOO", "Lunch"];
 
@@ -40,12 +37,12 @@ function blockFreeSlotsWhenOverloaded() {
       if (eventTitle === BLOCK_EVENT_TITLE) {
         existingBlockEvents.push(event);
       } else if (!isTitleExcluded(eventTitle, EXCLUDED_TITLES)) {
-        totalMeetingHours += msToHours(event.getEndTime() - event.getStartTime());
+        totalMeetingHours += msToHours(event.getEndTime()) - msToHours(event.getStartTime());
       }
     });
 
-    if (totalMeetingHours <= MEETING_THRESHOLD) {
-      existingBlockEvents.forEach(event => event.deleteEvent());
+    existingBlockEvents.forEach(event => event.deleteEvent());
+    if (totalMeetingHours <= MEETING_THRESHOLD) {      
       continue;
     }
 
